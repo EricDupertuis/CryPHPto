@@ -1,0 +1,13 @@
+{
+    "name": "ericdupertuis/cryphpto",
+    "description": "Crypto Package for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eric Dupertuis",
+            "email": "dupertuis.eric@gmail.com"
+        }
+    ],
+    "require": {},
+}
