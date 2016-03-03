@@ -16,9 +16,9 @@ namespace EricDupertuis\Cryphpto;
  */
 interface CryptoInterface
 {
-    public function decrypt();
+    public function decrypt($data, $key);
 
-    public function encrypt();
+    public function encrypt($data, $key);
 
     public function generateKeyPair();
 }

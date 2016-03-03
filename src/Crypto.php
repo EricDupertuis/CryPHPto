@@ -10,14 +10,18 @@ class Crypto implements CryptoInterface
 
     protected $private_key_type = OPENSSL_KEYTYPE_RSA;
 
-    public function encrypt()
+    public function encrypt($data, $key)
     {
-        // TODO: Implement encrypt() method.
+        openssl_public_encrypt($data, $encrypted, $key);
+
+        return $encrypted;
     }
 
-    public function decrypt()
+    public function decrypt($data, $key)
     {
-        // TODO: Implement decrypt() method.
+        openssl_private_decrypt($data, $decrypted, $key);
+
+        return $decrypted;
     }
 
     public function generateKeyPair()

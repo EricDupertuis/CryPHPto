@@ -9,5 +9,7 @@
             "email": "dupertuis.eric@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "silex/silex": "^1.3"
+    }
 }
