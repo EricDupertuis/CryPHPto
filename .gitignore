@@ -178,3 +178,4 @@ crashlytics-build.properties
 fabric.properties
 
 vendor
+composer.phar
