@@ -1,0 +1,17 @@
+{
+  "name": "CryPHPto",
+  "homepage": "https://github.com/EricDupertuis/CryPHPto",
+  "authors": [
+    "Eric Dupertuis <dupertuis.eric@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
