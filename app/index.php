@@ -1,13 +1,14 @@
 <?php
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
 $app = new Silex\Application();
 
 $app->get('/', function() use ($app) {
-    $loader = new Twig_Loader_Filesystem('./public/views');
+    $loader = new Twig_Loader_Filesystem('../public/views');
     $twig = new Twig_Environment($loader, [
         'cache' => '/cache',
+        'debug' => true
     ]);
 
     $template = $twig->loadTemplate('base.html.twig');

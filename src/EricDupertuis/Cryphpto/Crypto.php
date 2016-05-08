@@ -2,11 +2,13 @@
 
 namespace EricDupertuis\Cryphpto;
 
+use phpseclib\Crypt\RSA;
+
 class Crypto implements CryptoInterface
 {
     protected $digest_alg = "sha512";
 
-    protected $private_key_type = OPENSSL_KEYTYPE_RSA;
+    protected $private_key_bits = 4096;
 
     public function encrypt($data, $key)
     {
@@ -22,21 +24,14 @@ class Crypto implements CryptoInterface
         return $decrypted;
     }
 
-    public function generateKeyPair($bits = 4096)
+    public function generateKeyPair()
     {
-        $res = openssl_pkey_new([
-            "digest_alg" => $this->digest_alg,
-            "private_key_bits" => $bits,
-            "private_key_type" => $this->private_key_type
-        ]);
-
-        openssl_pkey_export($res, $privateKey);
-        $publicKey = openssl_pkey_get_details($res);
-        $publicKey = $publicKey["key"];
+        $rsa = new RSA();
+        $keys = $rsa->createKey();
 
         return json_encode([
-            "public" => $publicKey,
-            "private" => $privateKey
+            "public" => $keys['publickey'],
+            "private" => $keys['privatekey']
         ]);
     }
 }
