@@ -179,3 +179,6 @@ fabric.properties
 
 vendor
 composer.phar
+bower_components
+public/vendor
+cache
