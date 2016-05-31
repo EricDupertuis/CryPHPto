@@ -1,10 +1,14 @@
 <?php
 
 require_once '../vendor/autoload.php';
+$config = require_once '../app/config/config.php';
+$routing = require_once '../app/config/routing.php';
 
-$app = new Silex\Application();
+$app = new \EricDupertuis\Cryphpto\App($config, $routing);
 
-$app->get('/', function() use ($app) {
+$silex = new Silex\Application();
+
+$silex->get('/', function() use ($silex) {
     $loader = new Twig_Loader_Filesystem('../public/views');
     $twig = new Twig_Environment($loader, [
         'cache' => '/cache',
@@ -15,9 +19,9 @@ $app->get('/', function() use ($app) {
     return $template->render([]);
 });
 
-$app->get('/generatekey', function() use ($app) {
+$silex->get('/generatekey', function() use ($silex) {
     $crypto = new \EricDupertuis\Cryphpto\Crypto();
     return $crypto->generateKeyPair();
 });
 
-$app->run();
+$silex->run();
