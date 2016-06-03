@@ -16,8 +16,7 @@
     "public/vendor"
   ],
   "dependencies": {
-    "bootstrap": "^3.3.6",
-    "angular": "^1.5.6"
+    "bootstrap": "^3.3.6"
   },
   "private": true
 }
