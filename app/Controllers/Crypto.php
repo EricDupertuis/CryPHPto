@@ -1,10 +1,10 @@
 <?php
 
-namespace EricDupertuis\Cryphpto;
+namespace App\Controllers;
 
 use phpseclib\Crypt\RSA;
 
-class Crypto implements CryptoInterface
+class Crypto
 {
     protected $digest_alg = "sha512";
 
