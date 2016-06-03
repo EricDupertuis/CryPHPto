@@ -10,28 +10,90 @@ class Crypto
 
     protected $private_key_bits = 4096;
 
-    public function encrypt($data, $key)
-    {
-        openssl_public_encrypt($data, $encrypted, $key);
+    protected $encryptionMode = RSA::ENCRYPTION_PKCS1;
 
-        return $encrypted;
+    protected $privateKey;
+
+    protected $publicKey;
+
+    public function encryptFromPublic($data, $key)
+    {
+        $cipher = new RSA();
+        $cipher->setPublicKey($key);
+        $cipher->setEncryptionMode($this->encryptionMode);
+
+        return $cipher->encrypt($data);
     }
 
-    public function decrypt($data, $key)
+    public function encryptFromPrivate($data, $key)
     {
-        openssl_private_decrypt($data, $decrypted, $key);
+        $cipher = new RSA();
+        $cipher->setPrivateKey($key);
+        $cipher->setEncryptionMode($this->encryptionMode);
 
-        return $decrypted;
+        return $cipher->encrypt($data);
+    }
+
+    public function decryptFromPublic($data, $key)
+    {
+        $cipher = new RSA();
+        $cipher->setPublicKey($key);
+        $cipher->setEncryptionMode($this->encryptionMode);
+
+        return $cipher->decrypt($data);
+    }
+
+    public function decryptFromPrivate($data, $key)
+    {
+        $cipher = new RSA();
+        $cipher->setPrivateKey($key);
+        $cipher->setEncryptionMode($this->encryptionMode);
+
+        return $cipher->decrypt($data);
     }
 
     public function generateKeyPair()
     {
         $rsa = new RSA();
+        $rsa->setEncryptionMode($this->encryptionMode);
+
         $keys = $rsa->createKey();
 
-        return json_encode([
-            "public" => $keys['publickey'],
-            "private" => $keys['privatekey']
-        ]);
+        $this->setPublicKey($keys['publickey']);
+        $this->setPrivateKey($keys['privatekey']);
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrivateKey()
+    {
+        return $this->privateKey;
+    }
+
+    /**
+     * @param mixed $privateKey
+     */
+    public function setPrivateKey($privateKey)
+    {
+        $this->privateKey = $privateKey;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPublicKey()
+    {
+        return $this->publicKey;
+    }
+
+    /**
+     * @param mixed $publicKey
+     */
+    public function setPublicKey($publicKey)
+    {
+        $this->publicKey = $publicKey;
     }
 }
