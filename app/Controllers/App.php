@@ -56,6 +56,7 @@ class App
     public function setConfig($config)
     {
         $this->config = $config;
+        return $this;
     }
 
     /**
@@ -72,6 +73,7 @@ class App
     public function setRouting($routing)
     {
         $this->routing = $routing;
+        return $this;
     }
 
     /**
