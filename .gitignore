@@ -181,4 +181,5 @@ vendor
 composer.phar
 bower_components
 public/vendor
-cache
+
+app/cache
